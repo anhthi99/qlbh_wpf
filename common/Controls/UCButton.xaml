@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="common.Controls.UCButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:common.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="80"
+             DataContext="{Binding}"
+             >
+    <UserControl.Resources>
+        <Style x:Key="GridStyle" TargetType="{x:Type Grid}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Aqua"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource GridStyle}">
+        <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="{Binding ElementName=UCButton, Path=Label}" >
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Aquamarine" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+    </Grid>
+</UserControl>

@@ -1,0 +1,81 @@
+﻿<Window x:Class="QLBH_WPF.Login"
+        x:Name="loginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:QLBH_WPF"
+        mc:Ignorable="d"
+        Title="Đăng nhập" Height="250" Width="300"
+        DataContext="{StaticResource LoginVM}"
+        Background="DarkSlateGray"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        >
+    
+    <Grid>
+        <TextBlock FontSize="20" HorizontalAlignment="Center" Foreground="AntiqueWhite">QUẢN LÝ KHO HÀNG</TextBlock>
+        <materialDesign:Card
+            Width="250"
+            Height="120"
+            >
+            <StackPanel
+                VerticalAlignment="Center"
+                >
+                <TextBox
+                    TabIndex="0"
+                    materialDesign:HintAssist.Hint="Tên đăng nhập"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                    Margin="2 2"
+                    Text="{Binding UserName}"
+                    />
+                <PasswordBox
+                    TabIndex="1"
+                    x:Name="PasswordBox"
+                    materialDesign:HintAssist.Hint="Mật khẩu" 
+                    Margin="2 2"
+                    >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PasswordChanged">
+                            <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" CommandParameter="{Binding ElementName=PasswordBox}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </PasswordBox>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        TabIndex="2"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    
+                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                    Margin="4 4 4 4"
+                    Command="{Binding LoginProcessCommand}"
+                    CommandParameter="{Binding ElementName=loginWindow}"
+                    >
+                        ĐĂNG NHẬP
+                    </Button>
+                    <Button
+                        TabIndex="3"
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    
+                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                    Margin="4 4 4 4"
+                    Grid.Column="1"
+                    Command="{Binding CloseLoginCommand}"
+                    CommandParameter="{Binding ElementName=loginWindow}"
+                    >
+                        THOÁT
+                    </Button>
+                </Grid>
+            </StackPanel>
+            
+        </materialDesign:Card>
+    </Grid>
+</Window>
